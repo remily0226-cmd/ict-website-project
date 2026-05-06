@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Cart</title>
+
+<style>
+body {
+    font-family: Inter;
+    background:#f5efe9;
+    padding:30px;
+}
+
+.item {
+    background:white;
+    padding:15px;
+    margin:10px 0;
+    border-radius:10px;
+    display:flex;
+    justify-content:space-between;
+}
+
+button {
+    padding:5px 10px;
+    border:none;
+    background:#c8a27a;
+    color:white;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.summary {
+    margin-top:20px;
+    background:white;
+    padding:15px;
+    border-radius:10px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Your Order ☕</h1>
+
+<div id="cart"></div>
+
+<div class="summary">
+<h3 id="total"></h3>
+
+<button onclick="checkout()">Place Order</button>
+<button onclick="clearCart()">Clear Cart</button>
+</div>
+
+<script>
+let cartData = JSON.parse(localStorage.getItem("cart")) || [];
+
+let cartDiv = document.getElementById("cart");
+let total = 0;
+
+function renderCart(){
+    cartDiv.innerHTML="";
+    total = 0;
+
+    cartData.forEach((item,index)=>{
+        total += item.price;
+
+        cartDiv.innerHTML += `
+        <div class="item">
+            ${item.name} - Rp ${item.price}
+            <button onclick="removeItem(${index})">X</button>
+        </div>`;
+    });
+
+    document.getElementById("total").innerText = "Total: Rp " + total;
+}
+
+function removeItem(i){
+    cartData.splice(i,1);
+    localStorage.setItem("cart", JSON.stringify(cartData));
+    renderCart();
+}
+
+function clearCart(){
+    localStorage.removeItem("cart");
+    cartData=[];
+    renderCart();
+}
+
+function checkout(){
+    alert("Order placed! ☕ Please pay at the counter.");
+    clearCart();
+}
+
+renderCart();
+</script>
+
+</body>
+</html>
