@@ -47,13 +47,14 @@ main {
     z-index: 1000;
 }
 
-/* Brand inside navbar */
+/* Brand inside navbar - Now a Link */
 .brand {
     font-weight: 700;
     font-family: 'Playfair Display', serif;
     font-size: 18px;
     margin-right: 20px;
     color: var(--espresso);
+    text-decoration: none; /* Removes underline from the brand link */
 }
 
 /* Navbar links */
@@ -160,7 +161,9 @@ main {
 
 <!-- Navbar -->
 <div class="navbar">
-    <div class="brand">☕ Dairies Café</div>
+    <!-- FIX: Added index.html link to the brand name -->
+    <a href="index.html" class="brand">☕ Dairies Café</a>
+    
     <a href="about.html">About</a>
     <a href="product.html">Products</a>
     <a href="cart.html">Cart</a>
