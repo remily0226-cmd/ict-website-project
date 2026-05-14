@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About | Dairies Café</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg: #f5efe9;
+    --espresso: #2d1f1a;
+    --milk: #fdfaf7;
+    --latte: #c8a27a;
+    --caramel: #a67c52;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg);
+    color: var(--espresso);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main { 
+    flex: 1; 
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    background-color: var(--milk);
+    padding: 18px;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar a {
+    position: relative;
+    text-decoration: none;
+    color: var(--espresso);
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.navbar a:hover {
+    color: var(--latte);
+}
+
+.navbar a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0%;
+    height: 2px;
+    background-color: var(--latte);
+    transition: 0.3s;
+}
+
+.navbar a:hover::after { 
+    width: 100%; 
+}
+
+/* Hero */
+.hero {
+    text-align: center;
+    padding: 70px 20px 40px;
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    opacity: 0.75;
+    font-size: 15px;
+}
+
+/* About Content */
+.about-container {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.about-container p {
+    line-height: 1.9;
+    margin-bottom: 20px;
+    opacity: 0.85;
+}
+
+/* Image */
+.about-image {
+    width: 100%;
+    max-width: 550px;
+    border-radius: 22px;
+    margin: 35px auto;
+    display: block;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+    transition: 0.4s;
+}
+
+.about-image:hover {
+    transform: scale(1.01);
+}
+
+/* Highlight */
+.highlight {
+    background-color: var(--milk);
+    padding: 22px;
+    border-radius: 18px;
+    margin-top: 20px;
+    font-style: italic;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+}
+
+/* ORG CHART */
+.org-section {
+    text-align: center;
+    margin-top: 70px;
+}
+
+.org-section h2 {
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 35px;
+    font-size: 34px;
+}
+
+.org-chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.node {
+    background: var(--milk);
+    padding: 14px 22px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    margin: 10px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.node:hover {
+    transform: translateY(-4px);
+}
+
+.node small {
+    display: block;
+    font-size: 12px;
+    opacity: 0.7;
+    margin-top: 4px;
+}
+
+.owner {
+    background: var(--latte);
+    color: white;
+}
+
+.manager {
+    background: var(--caramel);
+    color: white;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.line {
+    width: 2px;
+    height: 25px;
+    background: var(--latte);
+}
+
+/* Job Description Cards */
+.job-section {
+    margin-top: 80px;
+}
+
+.job-section h2 {
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+    font-size: 34px;
+    margin-bottom: 40px;
+}
+
+.job-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 22px;
+}
+
+.job-card {
+    background: var(--milk);
+    padding: 24px;
+    border-radius: 20px;
+    text-align: left;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.05);
+    transition: 0.35s;
+}
+
+.job-card:hover {
+    transform: translateY(-5px);
+}
+
+.job-card h3 {
+    margin-top: 0;
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.job-card p {
+    font-size: 14px;
+    line-height: 1.7;
+    opacity: 0.85;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--espresso);
+    color: var(--milk);
+    font-size: 13px;
+    margin-top: 60px;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+
+    .navbar {
+        gap: 20px;
+        font-size: 14px;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    .row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .job-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<main>
+
+<!-- Navbar -->
+<div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="product.html">Products</a>
+    <a href="cart.html">Cart</a>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+    <h1>Our Story</h1>
+    <p>A warm little corner made for comfort, coffee, and connection.</p>
+</div>
+
+<!-- About Content -->
+<div class="about-container">
+    
+    <p>
+        At Dairies Café, we believe that even the smallest moments deserve something warm and comforting.
+        What started as a simple idea — a space to pause and breathe — has grown into a place where
+        people can find a little calm in the middle of their daily chaos.
+    </p>
+
+    <img src="Café Interior.png" alt="Café Interior" class="about-image">
+
+    <p>
+        Every cup we serve is crafted with care, and every detail in our space is designed to make you feel at home.
+        Whether you're here to study, catch up with friends, or simply unwind, Dairies Café is your quiet corner.
+    </p>
+
+    <div class="highlight">
+        “A Cup of Comfort.”
+    </div>
+
+    <!-- ORG CHART -->
+    <div class="org-section">
+        <h2>Our Team</h2>
+
+        <div class="org-chart">
+
+            <div class="node owner">
+                Owner / Founder
+                <small>Rebecca Emily S.</small>
+            </div>
+
+            <div class="line"></div>
+
+            <div class="node manager">
+                Café Manager
+                <small>Daniel Cruz</small>
+            </div>
+
+            <div class="line"></div>
+
+            <div class="row">
+                <div class="node">
+                    Head Barista
+                    <small>Sophia Nguyen</small>
+                </div>
+
+                <div class="node">
+                    Kitchen Lead
+                    <small>Marcus Tan</small>
+                </div>
+            </div>
+
+            <div class="line"></div>
+
+            <div class="row">
+                <div class="node">
+                    Baristas
+                    <small>Ava Lim • Ethan Wong</small>
+                </div>
+
+                <div class="node">
+                    Servers
+                    <small>Chloe Lee • Ryan Goh</small>
+                </div>
+
+                <div class="node">
+                    Kitchen Staff
+                    <small>Lucas Ong • Mia Rahman</small>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JOB DESCRIPTIONS -->
+    <div class="job-section">
+
+        <h2>Team Responsibilities</h2>
+
+        <div class="job-grid">
+
+            <div class="job-card">
+                <h3>Owner / Founder</h3>
+                <p>
+                    Leads the vision and branding of Dairies Café, manages business growth,
+                    oversees finances, and ensures the café maintains its cozy identity.
+                </p>
+            </div>
+
+            <div class="job-card">
+                <h3>Café Manager</h3>
+                <p>
+                    Supervises daily café operations, organizes staff schedules,
+                    handles customer service, and keeps everything running smoothly.
+                </p>
+            </div>
+
+            <div class="job-card">
+                <h3>Head Barista</h3>
+                <p>
+                    Trains baristas, maintains drink quality standards,
+                    and creates a welcoming coffee experience for every guest.
+                </p>
+            </div>
+
+            <div class="job-card">
+                <h3>Kitchen Lead</h3>
+                <p>
+                    Oversees food preparation, kitchen cleanliness,
+                    ingredient management, and kitchen coordination.
+                </p>
+            </div>
+
+            <div class="job-card">
+                <h3>Baristas</h3>
+                <p>
+                    Prepare beverages, assist customers warmly,
+                    and maintain cleanliness around the coffee station.
+                </p>
+            </div>
+
+            <div class="job-card">
+                <h3>Servers</h3>
+                <p>
+                    Take customer orders, serve food and drinks,
+                    and ensure guests feel comfortable during their visit.
+                </p>
+            </div>
+
+            <div class="job-card">
+                <h3>Kitchen Staff</h3>
+                <p>
+                    Assist with food preparation, organize ingredients,
+                    and support smooth daily kitchen operations.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</main>
+
+<!-- Footer -->
+<div class="footer">
+    © 2026 Dairies Café | All Rights Reserved
+</div>
+
+</body>
+</html>
